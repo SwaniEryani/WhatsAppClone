@@ -9,6 +9,9 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type BG = {
+  BG: undefined;
+}
 export type MainTabParamList = {
   Camera: String;
   Chats: String;
