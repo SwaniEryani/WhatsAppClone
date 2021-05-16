@@ -1,20 +1,32 @@
 import { format } from "prettier";
 import React from "react";
 import styles from "./style";
-import { View, Text ,Image } from "react-native";
-import moment from 'moment';
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
+import moment from "moment";
 import { ChatRoom } from "../../types";
+import { useNavigation } from "@react-navigation/native"
 
 export type ChatListItemProps = {
   chatRoom: ChatRoom;
 };
+
 export default function ChatListItem(props: ChatListItemProps) {
   const { chatRoom } = props;
 
+  const navigation = useNavigation();
   const user = chatRoom.users[1];
+
+  const onClick = () =>{
+    navigation.navigate('ChatRoom',{
+      id: chatRoom.id,
+      name: user.name,
+      image: user.imageUri,
+    });
+  }
   return (
-   
-    <View style={styles.container}>
+    
+    <TouchableWithoutFeedback onPress={onClick}>
+     <View style={styles.container}>
       <View style={styles.lefContainer}>
         <Image source={{ uri: user.imageUri }} style={styles.avatar} />
         <View style={styles.midContainer}>
@@ -27,5 +39,6 @@ export default function ChatListItem(props: ChatListItemProps) {
           {chatRoom.lastMessage && moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")}
         </Text>
     </View>
+  </TouchableWithoutFeedback>
   );
 }
