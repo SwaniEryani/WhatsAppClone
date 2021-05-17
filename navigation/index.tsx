@@ -23,6 +23,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import MainTabNavigator from "./MainTabNavigator";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
+import ContactsScreen from '../screens/ContactsScreen'
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({
@@ -104,6 +105,11 @@ function RootNavigator() {
             </View>
           )
         })}
+      />
+      <Stack.Screen
+        name="Contacts"
+        component={ContactsScreen}
+        options={{ title: "Contacts !" }}
       />
       <Stack.Screen
         name="NotFound"

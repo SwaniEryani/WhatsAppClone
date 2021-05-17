@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { FlatList ,StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
-import ChatListitem from '../components/ChatlistItem';
-import chatRooms from "../data/ChatRooms";
+import ContactListItem from '../components/ContactListItem';
+import users from "../data/Users";
 import NewMessageButton from '../components/NewMessageButton';
 import Colors from '../constants/Colors';
 
 
-export default function ChatScreen() {
+
+
+export default function ChatRoomScreen() {
+ 
+
   return (
     <View style={styles.container}>
       <FlatList 
-      data={chatRooms}
-      renderItem={({item})=> <ChatListitem chatRoom={item}/>
+      data={users}
+      renderItem={({item})=> <ContactListItem user={item}/>
       }
-      keyExtractor={item=>item.id}/>
+      keyExtractor={item=>item.id}
+      />
      <NewMessageButton />
     </View>
   );
@@ -26,5 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.light.background,
+    color: Colors.light.tint,
   }
 });

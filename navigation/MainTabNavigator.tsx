@@ -12,7 +12,9 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ChatScreen from '../screens/ChatScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { MainTabParamList, ChatParamList, TabTwoParamList } from '../types';
+import { MainTabParamList, ChatParamList, ContactsParamList,
+  TabTwoParamList } from '../types';
+import ContactsScreen from '../screens/ContactsScreen';
 
 const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
 
@@ -68,19 +70,33 @@ export default function MainTabNavigator() {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<ChatParamList>();
+const ChatStack = createStackNavigator<ChatParamList>();
 
 function ChatScreenNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
+    <ChatStack.Navigator>
+      <ChatStack.Screen
         name="ChatScreen"
         component={ChatScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Chats' }}
       />
-    </TabOneStack.Navigator>
+    </ChatStack.Navigator>
   );
 }
+
+// const ContactsStack = createStackNavigator<ContactsParamList>();
+
+// function ContactsScreenNavigator() {
+//   return (
+//     <ContactsStack.Navigator>
+//       <ContactsStack.Screen
+//         name="ContactsScreen"
+//         component={ContactsScreen}
+//         options={{ headerTitle: 'Contacts' }}
+//       />
+//     </ContactsStack.Navigator>
+//   );
+// }
 
 const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
